@@ -30,19 +30,6 @@ configurations {
     }
 }
 
-repositories {
-    exclusiveContent {
-        forRepository {
-            maven {
-                url "https://cursemaven.com"
-            }
-        }
-        filter {
-            includeGroup "curse.maven"
-        }
-    }
-}
-
 dependencies {
     forge "net.minecraftforge:forge:$rootProject.forge_version"
 
@@ -52,8 +39,16 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
+    implementation(include("io.github.llamalad7:mixinextras-forge:0.4.1"))
+
     modRuntimeOnly "curse.maven:chiselreborn-551763:$project.chisel_reborn_version"
     modImplementation "curse.maven:athena-841890:$project.athena_version"
+}
+
+loom {
+    forge {
+        mixinConfig "chiselsbc-forge.mixins.json"
+    }
 }
 
 processResources {

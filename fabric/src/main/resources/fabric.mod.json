@@ -15,12 +15,6 @@
   "icon": "assets/chiselsbc/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "com.yuuki1293.chiselsbc.fabric.ExampleModFabric"
-    ],
-    "client": [
-      "com.yuuki1293.chiselsbc.fabric.client.ExampleModFabricClient"
-    ]
   },
   "mixins": [
     "chiselsbc.mixins.json"

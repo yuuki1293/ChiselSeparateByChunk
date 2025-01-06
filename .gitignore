@@ -167,4 +167,8 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+### ForgeGradle ###
+# Minecraft client/server files
+run/
+
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,java

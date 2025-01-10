@@ -1,7 +1,8 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-#issueTrackerURL = ""
-license = "Insert License Here"
+issueTrackerURL = "https://github.com/yuuki1293/ChiselSeparateByChunk/issues"
+license = "MIT"
+clientSideOnly=true
 
 [[mods]]
 modId = "chiselsbc"
@@ -28,8 +29,8 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.chiselsbc]]
-modId = "architectury"
+modId = "athena"
 mandatory = true
-versionRange = "[9.2.14,)"
-ordering = "AFTER"
-side = "BOTH"
+versionRange = "[0,)"
+ordering = "NONE"
+side = "CLIENT"

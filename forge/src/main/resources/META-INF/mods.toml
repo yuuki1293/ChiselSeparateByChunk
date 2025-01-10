@@ -6,10 +6,10 @@ license = "Insert License Here"
 [[mods]]
 modId = "chiselsbc"
 version = "${version}"
-displayName = "[Chisel] Separated by Chunks"
-authors = "Me!"
+displayName = "Chisel: Separated by Chunks"
+authors = "yuuki1293"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+This mod makes Chisel’s connected texture blocks disconnect at chunk borders to make the chunk boundaries more visually distinguishable.
 '''
 #logoFile = ""
 

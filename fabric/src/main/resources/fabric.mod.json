@@ -17,7 +17,7 @@
   "entrypoints": {
   },
   "mixins": [
-    "chiselsbc.mixins.json"
+    "chiselsbc-fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.9",

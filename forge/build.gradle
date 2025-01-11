@@ -64,17 +64,17 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     group = "publishing"
     apiToken = System.getenv('CURSEFORGE_API_KEY') ?: 'XXX'
 
-    def mainFile = upload(rootProject.forge_id, jar)
-    mainFile.withAdditionalFile(sourcesJar)
+    def mainFile = upload(rootProject.property('curseforge_id'), remapJar)
     mainFile.releaseType = project.version_type
     mainFile.changelog = changelog.text
     mainFile.changelogType = 'markdown'
     mainFile.displayName = "${rootProject.name} ${project.version}"
-    mainFile.addGameVersion(project.minecraft_version)
+    mainFile.addGameVersion('1.20.1', '1.20.2', 'CLIENT')
     mainFile.addJavaVersion('Java 17')
     mainFile.addRequirement('athena')
     mainFile.addOptional('chisel-reborn')
     mainFile.addModLoader(project.name)
+    mainFile.withAdditionalFile(remapSourcesJar)
 }
 
 def changelogText = changelog.text
@@ -84,14 +84,14 @@ modrinth {
 
     token = modrinthToken
     // Remember to have the MODRINTH_TOKEN environment variable set or else this will fail - just make sure it stays private!
-    projectId = rootProject.modrinth_id // This can be the project ID or the slug. Either will work!
+    projectId = rootProject.property('modrinth_id') // This can be the project ID or the slug. Either will work!
     versionNumber = project.version as String
     versionName = "${rootProject.name} ${project.version}"
     // You don't need to set this manually. Will fail if Modrinth has this version already
     versionType = project.version_type // This is the default -- can also be `beta` or `alpha`
-    uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
-    additionalFiles = [sourcesJar]
-    gameVersions = [project.minecraft_version] // Must be an array, even with only one version
+    uploadFile = remapJar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+    additionalFiles = [remapSourcesJar]
+    gameVersions = ['1.20.1', '1.20.2'] // Must be an array, even with only one version
     loaders = ['forge'] // Must also be an array - no need to specify this if you're using Loom or ForgeGradle
     changelog = changelogText
     dependencies {

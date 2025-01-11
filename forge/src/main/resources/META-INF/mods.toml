@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[46,)"
 issueTrackerURL = "https://github.com/yuuki1293/ChiselSeparateByChunk/issues"
 license = "MIT"
 clientSideOnly=true
@@ -12,25 +12,25 @@ authors = "yuuki1293"
 description = '''
 This mod makes Chisel’s connected texture blocks disconnect at chunk borders to make the chunk boundaries more visually distinguishable.
 '''
-#logoFile = ""
+logoFile = "logo.png"
 
 [[dependencies.chiselsbc]]
 modId = "forge"
 mandatory = true
-versionRange = "[47,)"
+versionRange = "[46,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.chiselsbc]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20.1,)"
+versionRange = "[1.20,1.20.3)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.chiselsbc]]
 modId = "athena"
 mandatory = true
-versionRange = "[0,)"
+versionRange = "[3.0.0,)"
 ordering = "NONE"
 side = "CLIENT"

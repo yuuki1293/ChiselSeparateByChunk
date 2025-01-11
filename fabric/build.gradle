@@ -55,3 +55,43 @@ shadowJar {
 remapJar {
     inputFile.set shadowJar.archiveFile
 }
+
+task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+    group = "publishing"
+    apiToken = System.getenv('CURSEFORGE_API_KEY') ?: 'XXX'
+
+    def mainFile = upload(rootProject.forge_id, jar)
+    mainFile.withAdditionalFile(sourcesJar)
+    mainFile.releaseType = project.version_type
+    mainFile.changelog = changelog.text
+    mainFile.changelogType = 'markdown'
+    mainFile.displayName = "${rootProject.name} ${project.version}"
+    mainFile.addGameVersion(project.minecraft_version)
+    mainFile.addJavaVersion('Java 17')
+    mainFile.addRequirement('continuity')
+    mainFile.addOptional('chisel-reborn')
+    mainFile.addModLoader(project.name)
+}
+
+def changelogText = changelog.text
+
+modrinth {
+    var modrinthToken = System.getenv('MODRINTH_TOKEN') ?: 'XXX'
+
+    token = modrinthToken
+    // Remember to have the MODRINTH_TOKEN environment variable set or else this will fail - just make sure it stays private!
+    projectId = rootProject.modrinth_id // This can be the project ID or the slug. Either will work!
+    versionNumber = project.version as String
+    versionName = "${rootProject.name} ${project.version}"
+    // You don't need to set this manually. Will fail if Modrinth has this version already
+    versionType = project.version_type // This is the default -- can also be `beta` or `alpha`
+    uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+    additionalFiles = [sourcesJar]
+    gameVersions = [project.minecraft_version] // Must be an array, even with only one version
+    loaders = [project.name] // Must also be an array - no need to specify this if you're using Loom or ForgeGradle
+    changelog = changelogText
+    dependencies {
+        required.project 'continuity'
+        optional.project 'chisel-reborn'
+    }
+}

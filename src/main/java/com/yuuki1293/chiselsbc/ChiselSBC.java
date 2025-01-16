@@ -1,4 +1,4 @@
-package com.yuuki1293.chiselsbc.forge;
+package com.yuuki1293.chiselsbc;
 
 import com.yuuki1293.chiselsbc.ChiselSBC;
 import earth.terrarium.athena.api.client.utils.AthenaUtils;
@@ -7,6 +7,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod(ChiselSBC.MOD_ID)
 public class ChiselSBCForge {
+    public static final String MOD_ID = "chiselsbc";
+
     public ChiselSBCForge() {
     }
 

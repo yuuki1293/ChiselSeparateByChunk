@@ -1,4 +1,4 @@
-package com.yuuki1293.chiselsbc.api;
+package com.yuuki1293.chiselsbc;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

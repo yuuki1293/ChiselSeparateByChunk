@@ -1,4 +1,4 @@
-package com.yuuki1293.chiselsbc.forge.mixin;
+package com.yuuki1293.chiselsbc.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.yuuki1293.chiselsbc.api.Utils;

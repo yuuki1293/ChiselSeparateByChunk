@@ -61,6 +61,6 @@ jobs:
             - name: Publish to GitHub Release
               uses: gradle/gradle-build-action@v2
               env:
-                  GITHUB_API_KEY: ${{ secrets.GITHUB_API_KEY }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   arguments: githubRelease

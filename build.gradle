@@ -273,7 +273,7 @@ modrinth {
 }
 
 githubRelease {
-    token System.getenv('GITHUB_API_KEY') ?: '' // This is your personal access token with Repo permissions
+    token System.getenv('GITHUB_TOKEN') ?: '' // This is your personal access token with Repo permissions
     // You get this from your user settings > developer settings > Personal Access Tokens
     owner 'yuuki1293'
     // default is the last part of your group. Eg group: 'com.github.breadmoirai" => owner: "breadmoirai"

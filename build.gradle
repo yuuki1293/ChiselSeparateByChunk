@@ -5,6 +5,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id 'net.darkhax.curseforgegradle' version '1.1.25'
     id 'com.modrinth.minotaur' version '2.+'
@@ -39,6 +40,7 @@ minecraft {
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
     mappings channel: project.mapping_channel, version: project.mapping_version
+//    mappings channel: 'official', version: '1.20.1'
 
     // When true, this property will have all Eclipse/IntelliJ IDEA run configurations run the "prepareX" task for the given run configuration before launching the game.
     // In most cases, it is not necessary to enable.
@@ -128,16 +130,11 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
-    exclusiveContent {
-        forRepository {
-            maven {
-                url "https://cursemaven.com"
-            }
-        }
-        filter {
-            includeGroup "curse.maven"
-        }
+    maven {
+        name = "Curse Maven"
+        url = "https://cursemaven.com"
     }
+    maven { url "https://maven.architectury.dev/" }
 }
 
 dependencies {
@@ -147,6 +144,12 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1")) {
+        jarJar.ranged(it, "[0.4.1,)")
+    }
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
@@ -162,8 +165,14 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    runtimeOnly "curse.maven:chiselreborn-551763:$project.chisel_reborn_version"
-    implementation "curse.maven:athena-841890:$project.athena_version"
+    runtimeOnly fg.deobf("dev.architectury:architectury-forge:$architectury_api_version")
+    runtimeOnly fg.deobf("curse.maven:chiselreborn-551763:$chisel_reborn_version")
+    implementation fg.deobf("curse.maven:athena-841890:$athena_version")
+}
+
+mixin {
+    add sourceSets.main, 'mixins.chiselsbc.refmap.json'
+    config 'mixins.chiselsbc.json'
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -172,11 +181,11 @@ dependencies {
 // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [
-            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
-            forge_version: forge_version, forge_version_range: forge_version_range,
-            loader_version_range: loader_version_range,
-            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_description: mod_description,
+        minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+        forge_version       : forge_version, forge_version_range: forge_version_range,
+        loader_version_range: loader_version_range,
+        mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+        mod_authors         : mod_authors, mod_description: mod_description,
     ]
     inputs.properties replaceProperties
 
@@ -189,13 +198,13 @@ tasks.named('processResources', ProcessResources).configure {
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-                'Specification-Title'     : mod_id,
-                'Specification-Vendor'    : mod_authors,
-                'Specification-Version'   : '1', // We are version 1 of ourselves
-                'Implementation-Title'    : project.name,
-                'Implementation-Version'  : project.jar.archiveVersion,
-                'Implementation-Vendor'   : mod_authors,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            'Specification-Title'     : mod_id,
+            'Specification-Vendor'    : mod_authors,
+            'Specification-Version'   : '1', // We are version 1 of ourselves
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.jar.archiveVersion,
+            'Implementation-Vendor'   : mod_authors,
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 
@@ -227,8 +236,8 @@ String parserChangelog() {
         throw new GradleException('publish_with_changelog is true, but CHANGELOG.md does not exist in the workspace!')
     }
     String parsedChangelog = changelog.renderItem(
-            changelog.get(mod_version).withHeader(false).withEmptySections(false),
-            Changelog.OutputType.MARKDOWN)
+        changelog.get(mod_version).withHeader(false).withEmptySections(false),
+        Changelog.OutputType.MARKDOWN)
     if (parsedChangelog.isEmpty()) {
         throw new GradleException('publish_with_changelog is true, but the changelog for the latest version is empty!')
     }

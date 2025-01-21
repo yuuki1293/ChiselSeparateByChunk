@@ -62,7 +62,7 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
-[[dependencies.chiselsbc]]
+[[dependencies.${ mod_id }]]
 modId = "athena"
 mandatory = true
 versionRange = "[3.0.0,)"

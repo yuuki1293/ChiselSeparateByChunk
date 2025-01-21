@@ -11,6 +11,8 @@ public class Utils {
      * @param direction block side
      */
     public static boolean isChunkBorder(BlockPos pos, Direction direction) {
+        if(pos == null || direction == null) return false; // null check
+
         return switch (direction) {
             case NORTH -> Math.floorMod(pos.getZ(), 16) == 0;
             case SOUTH -> Math.floorMod(pos.getZ(), 16) == 15;

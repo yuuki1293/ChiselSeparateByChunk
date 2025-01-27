@@ -258,7 +258,6 @@ curseforge {
         addGameVersion 'Java 17'
         addGameVersion 'Forge'
         addGameVersion '1.20.1'
-        addGameVersion '1.20.2'
         releaseType = release_type
         changelog = parserChangelog()
         changelogType = 'markdown'
@@ -280,7 +279,7 @@ modrinth {
     versionNumber = project.version
     versionType = release_type
     uploadFile = jar
-    gameVersions = ['1.20.1', '1.20.2']
+    gameVersions = ['1.20.1']
     loaders = ['forge']
     dependencies {
         optional.project 'athena'
@@ -298,7 +297,7 @@ githubRelease {
     // default is the last part of your group. Eg group: 'com.github.breadmoirai" => owner: "breadmoirai"
     repo 'ChiselSeparateByChunk' // by default this is set to your project name
     tagName "v${project.version}" // by default this is set to "v${project.version}"
-    targetCommitish '1.20.1-1.20.2' // by default this is set to "main"
+    targetCommitish 'forge/1.20.1' // by default this is set to "main"
     releaseName "${rootProject.name} ${project.version}"
     // Release title, by default this is the same as the tagName
     generateReleaseNotes false

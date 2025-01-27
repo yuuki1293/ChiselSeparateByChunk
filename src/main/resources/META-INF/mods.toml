@@ -64,8 +64,14 @@ ordering = "NONE"
 side = "BOTH"
 [[dependencies.${ mod_id }]]
 modId = "athena"
-mandatory = true
+mandatory = false
 versionRange = "[3.0.0,)"
+ordering = "NONE"
+side = "CLIENT"
+[[dependencies.${ mod_id }]]
+modId = "fusion"
+mandatory = false
+versionRange = "[1.0.0,)"
 ordering = "NONE"
 side = "CLIENT"
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares

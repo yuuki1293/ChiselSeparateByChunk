@@ -4,9 +4,8 @@
     "compatibilityLevel": "JAVA_17",
     "minVersion": "0.8",
     "client": [
-        "CtmStateMixin"
-    ],
-    "mixins": [
+        "CtmStateMixin",
+        "ConnectingBakedModelMixin"
     ],
     "injectors": {
         "defaultRequire": 1

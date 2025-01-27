@@ -67,5 +67,6 @@ dependencies {
     // }
 
     runtimeOnly rfg.deobf('curse.maven:chisel-235279:2915375') // Chisel
+    compileOnly rfg.deobf('curse.maven:ctm-267602:2915363') // CTM
     runtimeOnly rfg.deobf('curse.maven:ctm-267602:2915363') // CTM
 }

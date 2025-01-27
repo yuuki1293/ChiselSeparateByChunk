@@ -1,5 +1,5 @@
 # Changelog 1.20.1-forge
-## [Unreleased]
+## [1.1.0] - 2025-01-27
 ### Added
 - ReChiseled support
 

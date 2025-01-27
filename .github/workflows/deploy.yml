@@ -50,6 +50,7 @@ jobs:
                   CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
               with:
                   arguments: curseforge
+              continue-on-error: true
 
             - name: Publish to Modrinth
               uses: gradle/gradle-build-action@v2
@@ -57,6 +58,7 @@ jobs:
                   MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
               with:
                   arguments: modrinth
+              continue-on-error: true
 
             - name: Publish to GitHub Release
               uses: gradle/gradle-build-action@v2
@@ -64,3 +66,4 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   arguments: githubRelease
+              continue-on-error: true

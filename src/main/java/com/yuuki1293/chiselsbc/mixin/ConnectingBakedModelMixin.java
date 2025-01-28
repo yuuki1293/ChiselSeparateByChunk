@@ -7,6 +7,7 @@ import com.yuuki1293.chiselsbc.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 @Mixin(value = ConnectingBakedModel.class, remap = false)
+@Pseudo
 public abstract class ConnectingBakedModelMixin {
     @Inject(method = "shouldConnect", at = @At("RETURN"), cancellable = true)
     private static void shouldConnect(CallbackInfoReturnable<Boolean> cir, @Local BlockPos pos, @Local(argsOnly = true) Direction face, @Local(argsOnly = true) ConnectionDirection direction) {

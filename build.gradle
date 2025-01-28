@@ -134,6 +134,7 @@ repositories {
         name = "Curse Maven"
         url = "https://cursemaven.com"
     }
+    maven { url "https://maven.architectury.dev/" }
 }
 
 dependencies {
@@ -259,7 +260,7 @@ curseforge {
         releaseType = release_type
         changelog = parserChangelog()
         changelogType = 'markdown'
-        mainArtifact jar, {
+        mainArtifact tasks.jarJar, {
             displayName = "$mod_name $version"
             relations {
                 optionalDependency 'athena'
@@ -276,7 +277,7 @@ modrinth {
     projectId = modrinth_id
     versionNumber = project.version
     versionType = release_type
-    uploadFile = jar
+    uploadFile = tasks.jarJar
     gameVersions = ['1.20.1']
     loaders = ['forge']
     dependencies {
@@ -303,7 +304,7 @@ githubRelease {
     body parserChangelog() // by default this is empty
     draft true // by default this is true
     prerelease false // by default this is false
-    releaseAssets jar
+    releaseAssets tasks.jarJar
     // this points to which files you want to upload as assets with your release, by default this is empty
     allowUploadToExisting.set false
     // Setting this to true will allow this plugin to upload artifacts to a release if it found an existing one. If overwrite is set to true, this option is ignored.

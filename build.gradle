@@ -134,7 +134,6 @@ repositories {
         name = "Curse Maven"
         url = "https://cursemaven.com"
     }
-    maven { url "https://maven.architectury.dev/" }
 }
 
 dependencies {
@@ -177,7 +176,6 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, 'mixins.chiselsbc.refmap.json'
     config 'mixins.chiselsbc.json'
 }
 

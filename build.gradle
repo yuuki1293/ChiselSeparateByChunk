@@ -41,7 +41,7 @@ setDefaultProperty 'extra_jvm_args', false, ''
 setDefaultProperty 'extra_tweak_classes', false, ''
 setDefaultProperty 'change_minecraft_sources', false, false
 
-version = propertyString('mod_version')
+version = "1.12.2-${propertyString('mod_version')}-forge"
 group = propertyString('root_package')
 
 base {

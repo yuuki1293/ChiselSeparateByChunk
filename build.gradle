@@ -256,15 +256,13 @@ curseforge {
         id = curseforge_id
         addGameVersion 'Java 17'
         addGameVersion 'Forge'
-        addGameVersion '1.20.1'
+        addGameVersion minecraft_version
         releaseType = release_type
         changelog = parserChangelog()
         changelogType = 'markdown'
         mainArtifact tasks.jarJar, {
             displayName = "$mod_name $version"
             relations {
-                optionalDependency 'athena'
-                optionalDependency 'chisel-reborn'
                 optionalDependency 'fusion-connected-textures'
                 optionalDependency 'rechiseled'
             }
@@ -278,11 +276,9 @@ modrinth {
     versionNumber = project.version
     versionType = release_type
     uploadFile = tasks.jarJar
-    gameVersions = ['1.20.1']
+    gameVersions = [minecraft_version]
     loaders = ['forge']
     dependencies {
-        optional.project 'athena'
-        optional.project 'chisel-reborn'
         optional.project 'fusion-connected-textures'
         optional.project 'rechiseled'
     }
@@ -296,7 +292,7 @@ githubRelease {
     // default is the last part of your group. Eg group: 'com.github.breadmoirai" => owner: "breadmoirai"
     repo 'ChiselSeparateByChunk' // by default this is set to your project name
     tagName "v${project.version}" // by default this is set to "v${project.version}"
-    targetCommitish 'forge/1.20.1' // by default this is set to "main"
+    targetCommitish "forge/$minecraft_version" // by default this is set to "main"
     releaseName "$mod_name ${project.version}"
     // Release title, by default this is the same as the tagName
     generateReleaseNotes false

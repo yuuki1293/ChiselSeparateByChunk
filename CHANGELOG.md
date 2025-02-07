@@ -1,12 +1,4 @@
-# Changelog 1.20.1-forge
-## [1.1.1] - 2025-01-28
-### Fix
-- crush :<
-
-## [1.1.0] - 2025-01-27
-### Added
-- ReChiseled support
-
+# Changelog 1.18.2-forge
 ## [1.0.0]
 ### Added
-- first release!
+- first 1.18.2 release!

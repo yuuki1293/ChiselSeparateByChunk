@@ -165,10 +165,10 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    runtimeOnly fg.deobf("dev.architectury:architectury-forge:$architectury_api_version")
-    runtimeOnly fg.deobf("curse.maven:chiselreborn-551763:$chisel_reborn_version")
-    compileOnly fg.deobf("curse.maven:athena-841890:$athena_version")
-    runtimeOnly fg.deobf("curse.maven:athena-841890:$athena_version")
+//    runtimeOnly fg.deobf("dev.architectury:architectury-forge:$architectury_api_version")
+//    runtimeOnly fg.deobf("curse.maven:chiselreborn-551763:$chisel_reborn_version")
+//    compileOnly fg.deobf("curse.maven:athena-841890:$athena_version")
+//    runtimeOnly fg.deobf("curse.maven:athena-841890:$athena_version")
     runtimeOnly fg.deobf("curse.maven:rechiseled-558998:$rechiseled_version")
     compileOnly fg.deobf("curse.maven:fusion-854949:$fusion_version")
     runtimeOnly fg.deobf("curse.maven:fusion-854949:$fusion_version")
